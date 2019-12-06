@@ -10,10 +10,26 @@ class User {
   addToFavorites(recipe) {
     this.favoriteRecipes.push(recipe);
   }
-  
+
   removeFromFavorites(recipe) {
     const i = this.favoriteRecipes.indexOf(recipe);
     this.favoriteRecipes.splice(i, 1)
+  }
+
+  filterFavorites(tag) {
+    return this.favoriteRecipes.filter(recipe => {
+      return recipe.tags.includes(tag);
+    });
+  }
+
+// Object.keys(recipe.name).toLowerCase();
+  findFavorites(strgToSrch) {
+     return this.favoriteRecipes.filter(recipe => {
+       return recipe.name.includes(strgToSrch)
+      || recipe.ingredients.find(ingredient => {
+        return ingredient.name.includes(strgToSrch)
+      });
+    });
   }
 }
 
