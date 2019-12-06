@@ -1,9 +1,6 @@
-const recipeData = require('../data/recipes');
-
 class Cookbook {
   constructor(data) {
     this.recipes = data;
-    this.filteredRecipes = [];
   };
 
   findRecipe(searchText) {
