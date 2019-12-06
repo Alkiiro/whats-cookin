@@ -22,8 +22,13 @@ class User {
     });
   }
 
-  findFavorites() {
-
+  findFavorites(strgToSrch) {
+    console.log(strgToSrch)
+     return this.favoriteRecipes.filter(recipe => {
+       console.log(recipe.name);
+       return recipe.name.includes(strgToSrch);
+      || recipe.ingredients..includes(strgToSrch);
+    });
   }
 }
 

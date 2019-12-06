@@ -53,12 +53,12 @@ describe('User', () => {
   });
 
   it('Should be able to add recipes to favoriteRecipes', () =>{
-    user1.addToFavorites("Loaded Chocolate Chip Pudding Cookie Cups")
-    expect(user1.favoriteRecipes.includes("Loaded Chocolate Chip Pudding Cookie Cups")).to.eql(true);
+    user1.addToFavorites(recipeData[0])
+    expect(user1.favoriteRecipes.includes(recipeData[0])).to.eql(true);
   });
 
   it('Should be able to remove recipes from favoriteRecipes', () =>{
-    user1.removeFromFavorites("Loaded Chocolate Chip Pudding Cookie Cups");
+    user1.removeFromFavorites(recipeData);
     expect(user1.favoriteRecipes).to.eql([]);
   });
 
@@ -68,9 +68,10 @@ describe('User', () => {
     expect(user1.filterFavorites('antipasti')).to.eql([recipeData[0]]);
   });
 
-  it.skip('Should be able to search favoriteRecipes by name or ingredient', () => {
+  it('Should be able to search favoriteRecipes by name or ingredient', () => {
     user1.addToFavorites(recipeData[0]);
-    expect(user1.findFavorites(name/ingredient)).to.eql(recipeData[0]);
+    user1.addToFavorites(recipeData[1]);
+    expect(user1.findFavorites('egg')).to.eql([recipeData[0]]);
   });
 
   it.skip('Should be able to check ingredients in User/s pantry for a given recipe', () => {
