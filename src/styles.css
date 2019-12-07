@@ -1,13 +1,8 @@
-/* html {
-  width: 100vw;
-} */
-
 body {
   border: 2px solid #000;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   margin: auto;
-  /* width: 100%; */
 }
 
 .main-header {
@@ -69,11 +64,23 @@ h1 {
   width: 90%;
 }
 
+
 .card-button {
   border: 1px solid #000;
   margin: 3px;
   padding: 5px;
+  /* width: 7%; */
+}
+
+.add {
   width: 7%;
+}
+
+.favorite {
+  background-image: url(https://image.flaticon.com/icons/svg/149/149222.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 13%;
 }
 
 .all-cards {
@@ -128,4 +135,9 @@ main {
   border: 2px solid #000;
   height: auto;
   width: 100%;
+}
+
+.favorite-active {
+  background-image: url(https://image.flaticon.com/icons/svg/148/148841.svg);
+  background-repeat: no-repeat;
 }
