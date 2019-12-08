@@ -1,4 +1,5 @@
 
+const favButton = document.querySelector('.view-favorites')
 let cardArea = document.querySelector('.all-cards');
 let favoriteButton = document.querySelector('.favorite');
 let addButton = document.querySelector('.add')
@@ -7,6 +8,7 @@ let user;
 
 window.onload = onStartup();
 
+favButton.addEventListener('click', viewFavorites)
 cardArea.addEventListener("click", buttonConditionals);
 
 function onStartup() {
@@ -16,6 +18,27 @@ function onStartup() {
   });
   user = new User(userId, newUser.name, newUser.pantry)
   populateCards(cookbook.recipes);
+  greetUser();
+}
+
+function viewFavorites() {
+  cardArea.innerHTML = '';
+  user.favoriteRecipes.forEach(recipe => {
+    cardArea.insertAdjacentHTML("afterbegin", `<div class='card'>
+        <header class='card-header'>
+          <img class='add card-button' src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to recipes to cook'>
+          <button id='${recipe.id}' class='favorite favorite-active card-button' alt='Favorite this recipe'></button>
+        </header>
+          <span class='recipe-name'>${recipe.name}</span>
+          <img class='card-picture' src="${recipe.image}" alt="Food from recipe">
+    </div>`)
+  });
+};
+
+function greetUser() {
+  const userName = document.querySelector('.user-name');
+  userName.innerHTML = user.name;
+
 }
 
 
