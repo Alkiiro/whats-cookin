@@ -731,7 +731,7 @@ let ingredientsData = [
   },
   {
     "id": 2044,
-    "name": "basil",
+    "name": "fresh basil",
     "estimatedCostInCents": 203
   },
   {
@@ -1233,3 +1233,7 @@ let ingredientsData = [
     "estimatedCostInCents": 613
   }
 ]
+
+if (typeof module !== 'undefined') {
+  module.exports = ingredientsData;
+}
