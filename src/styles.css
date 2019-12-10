@@ -1,5 +1,10 @@
-body {
+html {
+  background-color: #37515C;
   border: 2px solid #000;
+  height: 100vh;
+}
+
+body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   margin: auto;
@@ -42,26 +47,30 @@ h1 {
 .search-bar {
   display: flex;
   height: 100%;
-  margin: 5px 0px 0px 0px;
+  margin: 10px 0px 10px 0px;
   width: 30%;
 }
 
-.search-image {
+.search-button {
+  background-color: #EBF5EE;
   border: 1px solid #000;
-  height: 6vh;
-  margin: 3px 0px 7px 0px;
-  padding: 5px;
+  width: 20%;
+  height: 58px;
+  margin-top: 3px;
 }
 
 .search-image:hover,
 .card-button:hover,
-.view-favorites:hover {
+.view-favorites:hover,
+.search-button:hover {
   background-color: #cff2da;
 }
 
+
 .search-image:active,
 .card-button:active,
-.view-favorites:active {
+.view-favorites:active,
+.search-button:active {
   background-color: #C3C2C6;
 }
 
@@ -77,12 +86,24 @@ h1 {
 
 .card-button {
   border: 1px solid #000;
+  height: 27px;
   margin: 3px;
-  padding: 5px;
+}
+
+
+
+.add-button {
+  background-color: #EBF5EE;
+  display: flex;
+  width: 12%;
 }
 
 .add {
-  width: 7%;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
 }
 
 .favorite {
@@ -94,7 +115,6 @@ h1 {
 }
 
 .all-cards {
-  background-color: #7CA5B8;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(4, 1fr);
@@ -107,10 +127,11 @@ img {
 }
 
 .card {
-  background-color: #c8edfe;
+  background-color: #D7F2FE;
   border: 3px solid #000;
   width: 100%;
 }
+
 
 .card-header {
   background-color: #EBF5EE;
@@ -141,13 +162,12 @@ img {
 }
 
 main {
-  background-color: #7CA5B8;
-  border: 2px solid #000;
-  height: auto;
+  background-color: #37515C;
+  height: 100%;
   width: 100%;
 }
 
 .favorite-active {
-    background-image: url(https://image.flaticon.com/icons/svg/148/148841.svg);
+  background-image: url(https://image.flaticon.com/icons/svg/148/148841.svg);
   background-repeat: no-repeat;
 }
