@@ -2,13 +2,9 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const User = require('../src/user.js');
-const Recipe = require('../src/recipe.js');
 const recipeData = require('../data/recipes.js');
 
 let user1
-let user5
-let recipe1
-let recipe2
 
 describe('User', () => {
   beforeEach(() => {
@@ -26,26 +22,6 @@ describe('User', () => {
         "amount": 3
       }]
     );
-    user5 = new User(5, 'Krennick', [
-      {
-        "ingredient": 11477,
-        "amount": 1
-      },
-      {
-        "ingredient": 93820,
-        "amount": 1
-      },
-      {
-        "ingredient": 11297,
-        "amount": 3
-      },
-      {
-        "ingredient": 11547,
-        "amount": 5
-      }]
-    );
-    recipe1 = new Recipe(recipeData[0]);
-    recipe2 = new Recipe(recipeData[1]);
   });
 
   it('Should have a property of favoriteRecipes with a default value', () => {
