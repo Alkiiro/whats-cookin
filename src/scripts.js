@@ -38,7 +38,7 @@ function viewFavorites() {
           <button id='${recipe.id}' class='favorite favorite-active card-button'></button>
         </header>
           <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
-          <img id='${recipe.id}' class='card-picture' src="${recipe.image}" alt="Food from recipe">
+          <img id='${recipe.id}' tabindex="0" class='card-picture' src="${recipe.image}" alt="Food from recipe">
     </div>`)
   });
 };
@@ -68,18 +68,37 @@ function cardButtonConditionals(event) {
   if (event.target.classList.contains('favorite')) {
     favoriteCard(event);
    } else if (event.target.classList.contains('card-picture')) {
-    displayDirections();
+    displayDirections(event);
   }
 }
 
-function displayDirections() {
+function displayDirections(event) {
    let newRecipeInfo = cookbook.recipes.find(recipe => {
     if (recipe.id === Number(event.target.id)) {
       return recipe;
     }
   })
-  let recipeObject = new Recipe(newRecipeInfo)
-  console.log(recipeObject.name, recipeObject.ingredients);
+  let recipeObject = new Recipe(newRecipeInfo, ingredientsData);
+  let cost = recipeObject.calculateCost()
+  let costInDollars = (cost / 100).toFixed(2)
+  cardArea.classList.add('all');
+  cardArea.innerHTML = `<h3>${recipeObject.name}</h3>
+  <p class='all-recipe-info'>
+
+  <strong>You will need:</strong> <span class='ingredients recipe-info'></span>
+  <strong>It will cost:</strong> <span class='cost recipe-info'>$${costInDollars}</span><br><br>
+  <strong>Instructions:</strong> <span class='instructions recipe-info'></span>
+  </p>`;
+  let ingredientsSpan = document.querySelector('.ingredients');
+  let instructionsSpan = document.querySelector('.instructions');
+  recipeObject.ingredients.forEach(ingredient => {
+    ingredientsSpan.insertAdjacentHTML("afterbegin", `<ul><li>${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit} ${ingredient.name}</li></ul>
+    `)
+  })
+  recipeObject.instructions.forEach(instruction => {
+    instructionsSpan.insertAdjacentHTML("beforebegin", `<ol><li>${instruction.instruction}</li></ol>
+    `)
+  })
 }
 
 function populateCards(recipes) {
@@ -94,7 +113,7 @@ function populateCards(recipes) {
           <button id='${recipe.id}' class='favorite card-button'></button>
         </header>
           <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
-          <img id='${recipe.id}' class='card-picture' src="${recipe.image}" alt="click to view recipe for ${recipe.name}">
+          <img id='${recipe.id}' tabindex="0" class='card-picture' src="${recipe.image}" alt="click to view recipe for ${recipe.name}">
     </div>`)
   });
 };
