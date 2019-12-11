@@ -10,16 +10,16 @@ describe('User', () => {
   beforeEach(() => {
     user1 = new User(1, 'Boba', [
       {
-        "ingredient": 1077,
-        "amount": 1
+        'ingredient': 1077,
+        'amount': 1
       },
       {
-        "ingredient": 14412,
-        "amount": 1
+        'ingredient': 14412,
+        'amount': 1
       },
       {
-        "ingredient": 1009054,
-        "amount": 3
+        'ingredient': 1009054,
+        'amount': 3
       }]
     );
   });
@@ -51,7 +51,6 @@ describe('User', () => {
   });
 
   it.skip('Should be able to check ingredients in User/s pantry for a given recipe', () => {
-    user1.
     expect(user1.checkPantry(recipeIngredients)).to.eql('You have the ingredients!');
   });
 
