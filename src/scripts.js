@@ -13,7 +13,7 @@ window.onload = onStartup();
 
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
-cardArea.addEventListener("click", cardButtonConditionals);
+cardArea.addEventListener('click', cardButtonConditionals);
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
@@ -37,7 +37,7 @@ function viewFavorites() {
     favButton.innerHTML = 'Your Favorites'
     cardArea.innerHTML = '';
     user.favoriteRecipes.forEach(recipe => {
-      cardArea.insertAdjacentHTML("afterbegin", `<div id='${recipe.id}'
+      cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
       <header id='${recipe.id}' class='card-header'>
       <label for='add-button' class='hidden'>Click to add recipe</label>
@@ -50,8 +50,8 @@ function viewFavorites() {
       <button id='${recipe.id}' class='favorite favorite-active card-button'>
       </button></header>
       <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
-      <img id='${recipe.id}' tabindex="0" class='card-picture'
-      src="${recipe.image}" alt="Food from recipe">
+      <img id='${recipe.id}' tabindex='0' class='card-picture'
+      src='${recipe.image}' alt='Food from recipe'>
       </div>`)
     })
   }
@@ -111,16 +111,24 @@ function displayDirections(event) {
   let ingredientsSpan = document.querySelector('.ingredients');
   let instructionsSpan = document.querySelector('.instructions');
   recipeObject.ingredients.forEach(ingredient => {
-    ingredientsSpan.insertAdjacentHTML("afterbegin", `<ul><li>
+    ingredientsSpan.insertAdjacentHTML('afterbegin', `<ul><li>
     ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}
     ${ingredient.name}</li></ul>
     `)
   })
   recipeObject.instructions.forEach(instruction => {
-    instructionsSpan.insertAdjacentHTML("beforebegin", `<li>
+    instructionsSpan.insertAdjacentHTML('beforebegin', `<li>
     ${instruction.instruction}</li>
     `)
   })
+}
+
+function getFavorites() {
+  if (user.favoriteRecipes.length) {
+    user.favoriteRecipes.forEach(recipe => {
+      document.querySelector(`.favorite${recipe.id}`).classList.add('favorite-active')
+    })
+  } else return
 }
 
 function populateCards(recipes) {
@@ -128,7 +136,7 @@ function populateCards(recipes) {
     cardArea.classList.remove('all')
   }
   recipes.forEach(recipe => {
-    cardArea.insertAdjacentHTML("afterbegin", `<div id='${recipe.id}'
+    cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
     class='card'>
         <header id='${recipe.id}' class='card-header'>
           <label for='add-button' class='hidden'>Click to add recipe</label>
@@ -139,11 +147,12 @@ function populateCards(recipes) {
           </button>
           <label for='favorite-button' class='hidden'>Click to favorite recipe
           </label>
-          <button id='${recipe.id}' class='favorite card-button'></button>
+          <button id='${recipe.id}' class='favorite favorite${recipe.id} card-button'></button>
         </header>
           <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
-          <img id='${recipe.id}' tabindex="0" class='card-picture'
-          src="${recipe.image}" alt="click to view recipe for ${recipe.name}">
+          <img id='${recipe.id}' tabindex='0' class='card-picture'
+          src='${recipe.image}' alt='click to view recipe for ${recipe.name}'>
     </div>`)
   })
+  getFavorites();
 };
