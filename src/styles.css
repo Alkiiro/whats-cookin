@@ -10,6 +10,7 @@ body {
   margin: auto;
 }
 
+
 .main-header {
   background-color: #EBF5EE;
   border: 2px solid #000;
@@ -106,6 +107,7 @@ h1 {
   display: none;
 }
 
+
 .favorite {
   background-color: #EBF5EE;
   background-image: url(https://image.flaticon.com/icons/svg/149/149222.svg);
@@ -140,7 +142,24 @@ img {
   justify-content: space-between;
 }
 
+.all {
+  grid-gap: 0px;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.all-recipe-info {
+  color: #EBF5EE;
+  font-size: 220%;
+  width: 100%;
+}
+
+h3 {
+  color: #EBF5EE;
+  font-size: 250%;
+}
+
 .recipe-name {
+
   display: block;
   font-size: 150%;
   text-align: center;
