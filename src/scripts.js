@@ -1,12 +1,14 @@
 
-const favButton = document.querySelector('.view-favorites')
+const favButton = document.querySelector('.view-favorites');
+let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let cookbook = new Cookbook(recipeData);
 let user;
 
 window.onload = onStartup();
 
-favButton.addEventListener('click', viewFavorites)
+homeButton.addEventListener('click', cardButtonConditionals);
+favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener("click", cardButtonConditionals);
 
 function onStartup() {
@@ -20,6 +22,9 @@ function onStartup() {
 }
 
 function viewFavorites() {
+  if (cardArea.classList.contains('all')) {
+    cardArea.classList.remove('all')
+  }
   if (!user.favoriteRecipes.length) {
     favButton.innerHTML = 'You have no favorites!';
     populateCards(cookbook.recipes);
@@ -69,8 +74,11 @@ function cardButtonConditionals(event) {
     favoriteCard(event);
    } else if (event.target.classList.contains('card-picture')) {
     displayDirections(event);
+  } else if (event.target.classList.contains('home')) {
+    populateCards(cookbook.recipes);
   }
 }
+
 
 function displayDirections(event) {
    let newRecipeInfo = cookbook.recipes.find(recipe => {
@@ -84,10 +92,9 @@ function displayDirections(event) {
   cardArea.classList.add('all');
   cardArea.innerHTML = `<h3>${recipeObject.name}</h3>
   <p class='all-recipe-info'>
-
-  <strong>You will need:</strong> <span class='ingredients recipe-info'></span>
-  <strong>It will cost:</strong> <span class='cost recipe-info'>$${costInDollars}</span><br><br>
-  <strong>Instructions:</strong> <span class='instructions recipe-info'></span>
+  <strong>It will cost: </strong><span class='cost recipe-info'>$${costInDollars}</span><br><br>
+  <strong>You will need: </strong><span class='ingredients recipe-info'></span>
+  <strong>Instructions: </strong><ol><span class='instructions recipe-info'></span></ol>
   </p>`;
   let ingredientsSpan = document.querySelector('.ingredients');
   let instructionsSpan = document.querySelector('.instructions');
@@ -96,12 +103,15 @@ function displayDirections(event) {
     `)
   })
   recipeObject.instructions.forEach(instruction => {
-    instructionsSpan.insertAdjacentHTML("beforebegin", `<ol><li>${instruction.instruction}</li></ol>
+    instructionsSpan.insertAdjacentHTML("beforebegin", `<li>${instruction.instruction}</li>
     `)
   })
 }
 
 function populateCards(recipes) {
+  if (cardArea.classList.contains('all')) {
+    cardArea.classList.remove('all')
+  }
   recipes.forEach(recipe => {
     cardArea.insertAdjacentHTML("afterbegin", `<div id='${recipe.id}' class='card'>
         <header id='${recipe.id}' class='card-header'>
