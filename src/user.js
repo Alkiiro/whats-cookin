@@ -9,7 +9,7 @@ class User {
 
   addToFavorites(recipe) {
     if (!this.favoriteRecipes.includes(recipe)) {
-      this.favoriteRecipes.push(recipe)  
+      this.favoriteRecipes.push(recipe)
     }
   }
 
@@ -24,10 +24,9 @@ class User {
     });
   }
 
-// Object.keys(recipe.name).toLowerCase();
   findFavorites(strgToSrch) {
-     return this.favoriteRecipes.filter(recipe => {
-       return recipe.name.includes(strgToSrch)
+    return this.favoriteRecipes.filter(recipe => {
+      return recipe.name.includes(strgToSrch)
       || recipe.ingredients.find(ingredient => {
         return ingredient.name.includes(strgToSrch)
       });
