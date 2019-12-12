@@ -1,8 +1,3 @@
-// let User = require('../src/user.js');
-// let Cookbook = require('../src/cookbook.js');
-// let recipeData = require('../data/recipes.js');
-// let users = require('../data/users.js');
-
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
@@ -21,6 +16,7 @@ function onStartup() {
     return user.id === Number(userId);
   });
   user = new User(userId, newUser.name, newUser.pantry)
+  pantry = new Pantry(newUser.pantry)
   populateCards(cookbook.recipes);
   greetUser();
 }
@@ -34,7 +30,7 @@ function viewFavorites() {
     populateCards(cookbook.recipes);
     return
   } else {
-    favButton.innerHTML = 'Your Favorites'
+    favButton.innerHTML = 'Refresh Favorites'
     cardArea.innerHTML = '';
     user.favoriteRecipes.forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
@@ -85,6 +81,7 @@ function cardButtonConditionals(event) {
   } else if (event.target.classList.contains('card-picture')) {
     displayDirections(event);
   } else if (event.target.classList.contains('home')) {
+    favButton.innerHTML = 'View Favorites';
     populateCards(cookbook.recipes);
   }
 }
@@ -132,6 +129,7 @@ function getFavorites() {
 }
 
 function populateCards(recipes) {
+  cardArea.innerHTML = '';
   if (cardArea.classList.contains('all')) {
     cardArea.classList.remove('all')
   }
